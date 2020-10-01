@@ -11,6 +11,10 @@ const Atleta = db.database.define('atletas', {
     type: db.Sequelize.STRING,
     allowNull: false
   },
+  rg: {
+    type: db.Sequelize.STRING,
+    allowNull: false
+  },
   data_nasc: {
     type: db.Sequelize.DataTypes.DATEONLY,
     allowNull: false

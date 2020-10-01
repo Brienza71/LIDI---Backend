@@ -7,6 +7,7 @@ class AtletaDAO {
             Atleta.create({
                     cpf: atleta.cpf,
                     nome: atleta.nome,
+                    rg: atleta.rg,
                     data_nasc: atleta.data_nasc,
                     email: atleta.email,
                     telefone: atleta.telefone,
@@ -37,6 +38,7 @@ class AtletaDAO {
                         'id',
                         'cpf',
                         'nome',
+                        'rg',
                         'data_nasc',
                         'email',
                         'telefone',
@@ -71,6 +73,7 @@ class AtletaDAO {
             Atleta.update({
                     cpf: atleta.cpf,
                     nome: atleta.nome,
+                    rg: atleta.rg,
                     data_nasc: atleta.data_nasc,
                     email: atleta.email,
                     telefone: atleta.telefone,

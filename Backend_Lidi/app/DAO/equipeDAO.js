@@ -8,7 +8,7 @@ class EquipeDAO {
                     cnpj: equipe.cnpj,
                     nome: equipe.nome,
                     empresa: equipe.empresa,
-                    logotipo: equipe.logotipo,
+                    url_logotipo: equipe.url_logotipo,
                     responsavel: equipe.responsavel,
                     telefone_responsavel: equipe.telefone_responsavel,
                     email_responsavel: equipe.email_responsavel,
@@ -34,7 +34,7 @@ class EquipeDAO {
                         'cnpj',
                         'nome',
                         'empresa',
-                        'logotipo',
+                        'url_logotipo',
                         'responsavel',
                         'telefone_responsavel',
                         'email_responsavel',
@@ -44,6 +44,7 @@ class EquipeDAO {
                     ]
                 })
                 .then(equipe => {
+                    console.log(equipe)
                     let equipes = []
                     equipe.forEach(equipe => {
                         equipes.push(equipe.dataValues)
@@ -51,6 +52,7 @@ class EquipeDAO {
                     resolve(equipes)
                 })
                 .catch(err => {
+                    console.log(err)
                     reject(err)
                 })
         })
@@ -63,7 +65,7 @@ class EquipeDAO {
                     cnpj: equipe.cnpj,
                     nome: equipe.nome,
                     empresa: equipe.empresa,
-                    logotipo: equipe.logotipo,
+                    url_logotipo: equipe.url_logotipo,
                     responsavel: equipe.responsavel,
                     telefone_responsavel: equipe.telefone_responsavel,
                     email_responsavel: equipe.email_responsavel,
@@ -158,7 +160,7 @@ class EquipeDAO {
                     }
                 })
                 .then(path => {
-                    resolve(path[0]['dataValues']['logotipo'])
+                    resolve(path[0]['dataValues']['url_logotipo'])
                 })
                 .catch(err => {
                     reject(err)

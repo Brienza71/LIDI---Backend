@@ -18,6 +18,9 @@ module.exports = function () {
     app.use(bodyParser.json())
 
     // Routes \\
+    app.get('/teste', (req, res) => {
+        res.json({test:'hfbdbg'})
+    })
     app.use('/', routes)
 
     return app
