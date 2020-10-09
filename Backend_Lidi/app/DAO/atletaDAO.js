@@ -1,4 +1,6 @@
-const Atleta = require('../models/atleta')
+const Atleta = require('../models/atleta');
+const Equipe = require('../models/equipe');
+
 
 class AtletaDAO {
 
@@ -19,7 +21,9 @@ class AtletaDAO {
                     nome_responsavel: atleta.nome_responsavel,
                     cpf_responsavel: atleta.cpf_responsavel,
                     telefone_responsavel: atleta.telefone_responsavel,
-                    celular_responsavel: atleta.celular_responsavel
+                    celular_responsavel: atleta.celular_responsavel,
+                    id_equipe: atleta.id_equipe
+                    
                 })
                 .then(result => {
                     resolve(result)
@@ -33,6 +37,9 @@ class AtletaDAO {
 
     read() {
         return new Promise((resolve, reject) => {
+            Equipe.hasMany(Atleta, {foreignKey: 'id'})
+            Atleta.belongsTo(Equipe, {foreignKey: 'id'})
+
             Atleta.findAll({
                     attributes: [
                         'id',
@@ -50,10 +57,14 @@ class AtletaDAO {
                         'nome_responsavel',
                         'cpf_responsavel',
                         'telefone_responsavel',
-                        'celular_responsavel'
-                    ]
+                        'celular_responsavel',
+                        'id_equipe'
+                    ],
+                    include: [Equipe],
+                    // order: [['id', 'name']]
                 })
                 .then(atleta => {
+                    console.log(atleta)
                     let atletas = []
                     atleta.forEach(atleta => {
                         atleta.dataValues['data_nasc'] = atleta.dataValues['data_nasc'].split('-').reverse().join('/')
@@ -62,6 +73,7 @@ class AtletaDAO {
                     resolve(atletas)
                 })
                 .catch(err => {
+                    console.log(err)
                     reject(err)
                 })
         })
@@ -85,7 +97,8 @@ class AtletaDAO {
                     nome_responsavel: atleta.nome_responsavel,
                     cpf_responsavel: atleta.cpf_responsavel,
                     telefone_responsavel: atleta.telefone_responsavel,
-                    celular_responsavel: atleta.celular_responsavel
+                    celular_responsavel: atleta.celular_responsavel,
+                    id_equipe: atleta.id_equipe
                 }, {
                     where: {
                         id: id
