@@ -37,8 +37,8 @@ class AtletaDAO {
 
     read() {
         return new Promise((resolve, reject) => {
-            Equipe.hasMany(Atleta, {foreignKey: 'id'})
-            Atleta.belongsTo(Equipe, {foreignKey: 'id'})
+            Equipe.hasMany(Atleta)
+            Atleta.belongsTo(Equipe, {foreignKey: 'id_equipe'})
 
             Atleta.findAll({
                     attributes: [
